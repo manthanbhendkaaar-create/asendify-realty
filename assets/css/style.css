@@ -224,6 +224,20 @@ footer .brand{ color:var(--paper); }
 footer p{ color:rgba(241,233,220,0.6); font-size:14px; max-width:36ch; }
 footer .fine{ border-top:1px solid rgba(241,233,220,0.15); margin-top:32px; padding-top:20px; font-size:12.5px; color:rgba(241,233,220,0.45); font-family:var(--font-mono); }
 
+/* ---------- Floating WhatsApp button ---------- */
+.whatsapp-fab{
+  position:fixed; right:22px; bottom:22px; z-index:900;
+  width:58px; height:58px; border-radius:50%;
+  background:#25D366; color:#fff;
+  display:flex; align-items:center; justify-content:center;
+  box-shadow:0 10px 26px -8px rgba(0,0,0,0.45);
+  transition:transform .18s ease, box-shadow .18s ease;
+}
+.whatsapp-fab:hover{ transform:translateY(-3px) scale(1.05); box-shadow:0 14px 30px -8px rgba(0,0,0,0.5); }
+@media (max-width: 600px){
+  .whatsapp-fab{ right:16px; bottom:16px; width:52px; height:52px; }
+}
+
 /* ---------- Empty state ---------- */
 .empty-state{ text-align:center; padding:60px 20px; color:var(--stone); font-family:var(--font-mono); }
 

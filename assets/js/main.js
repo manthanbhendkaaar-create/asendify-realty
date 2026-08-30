@@ -2,6 +2,7 @@
    No build step: fetches data/properties.json and renders plain DOM. */
 
 const DATA_URL = 'data/properties.json';
+const BUSINESS_WHATSAPP = '919096082894'; // General enquiries — country code, no + or spaces
 
 function formatINR(amount) {
   return new Intl.NumberFormat('en-IN', { maximumFractionDigits: 0 }).format(amount);
@@ -230,7 +231,25 @@ async function initLocalityPage() {
   }
 }
 
+// ---- Floating WhatsApp button (every page) ----
+function injectWhatsappFab() {
+  if (document.querySelector('.whatsapp-fab')) return;
+  const msg = "Hi Asendify Realty, I'd like to know more about your properties in Koregaon Park, Kalyani Nagar, or Viman Nagar.";
+  const link = document.createElement('a');
+  link.className = 'whatsapp-fab';
+  link.href = `https://wa.me/${BUSINESS_WHATSAPP}?text=${encodeURIComponent(msg)}`;
+  link.target = '_blank';
+  link.rel = 'noopener';
+  link.setAttribute('aria-label', 'Chat with Asendify Realty on WhatsApp');
+  link.innerHTML = `
+    <svg viewBox="0 0 32 32" width="28" height="28" fill="currentColor" aria-hidden="true">
+      <path d="M16.001 3C9.373 3 4 8.373 4 15c0 2.386.697 4.61 1.897 6.48L4 29l7.72-1.865A11.94 11.94 0 0 0 16.001 27C22.629 27 28 21.627 28 15S22.629 3 16.001 3Zm0 21.75a9.7 9.7 0 0 1-4.95-1.356l-.355-.21-4.583 1.107 1.127-4.463-.232-.366A9.71 9.71 0 0 1 5.25 15c0-5.936 4.815-10.75 10.751-10.75S26.75 9.064 26.75 15 21.937 24.75 16.001 24.75Zm5.36-7.53c-.294-.148-1.74-.859-2.01-.957-.27-.099-.466-.148-.663.148-.196.295-.76.957-.932 1.153-.172.196-.343.221-.637.074-.294-.148-1.241-.457-2.364-1.457-.874-.78-1.464-1.744-1.636-2.038-.172-.295-.018-.454.13-.601.133-.133.294-.344.442-.516.147-.172.196-.295.294-.492.098-.196.049-.369-.025-.516-.074-.148-.663-1.596-.909-2.187-.24-.575-.484-.497-.663-.507l-.564-.01c-.196 0-.516.074-.786.369-.27.295-1.03 1.006-1.03 2.454 0 1.448 1.055 2.847 1.202 3.043.147.196 2.077 3.171 5.032 4.446.703.303 1.251.484 1.679.62.705.224 1.347.192 1.855.117.566-.084 1.74-.712 1.985-1.4.245-.688.245-1.278.172-1.4-.074-.123-.27-.196-.564-.344Z"/>
+    </svg>`;
+  document.body.appendChild(link);
+}
+
 document.addEventListener('DOMContentLoaded', () => {
+  injectWhatsappFab();
   initModeToggle();
   initHome();
   initListings();

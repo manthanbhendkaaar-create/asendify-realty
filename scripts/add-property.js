@@ -66,7 +66,7 @@ async function main() {
 
   let whatsappNumber = config.whatsappNumber;
   if (!whatsappNumber) {
-    whatsappNumber = await ask('WhatsApp number for leads, with country code, no + or spaces (e.g. 919999999999): ');
+    whatsappNumber = await ask('WhatsApp number for leads, with country code, no + or spaces (e.g. 919096082894): ');
     const save = (await ask('Save this as the default WhatsApp number for future listings? [y/n]: ')).toLowerCase();
     if (save === 'y') { config.whatsappNumber = whatsappNumber; saveConfig(config); }
   } else {
