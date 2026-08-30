@@ -84,6 +84,11 @@ DNS usually resolves within a few minutes to a few hours.
 ## Publishing new listings after launch
 Every time you run `add-property.js` or `update-status.js` and say yes to "commit and push", GitHub Pages rebuilds automatically — no redeploy step needed.
 
+## Terms & Fees gate
+First-time visitors see a blocking "Terms & Fees" popup (`assets/js/terms.js`) before they can use the site — it covers brokerage (3 months' rent for renting, 1% of sale value for buying/selling), token/booking amounts, security deposits, documentation charges, cancellation/refund policy, and a no-hidden-fees clause. They must tick the checkbox and click "I Agree" to continue; their acceptance is remembered in the browser (`localStorage`) so they won't see it again on that device. Anyone can re-read it anytime via the "Terms & Fees" link in the footer, which reopens the same content without the lock.
+
+To edit the wording or fees, just change the `TERMS_HTML` template string at the top of `assets/js/terms.js` — it's plain HTML, no build step needed.
+
 ## What this doesn't do (by design, for now)
 - No online payments — brokerage is collected offline (bank transfer/UPI) once a deal closes; the site just states the terms and sends the lead to WhatsApp.
 - No admin login or CMS — you're the only "backend" via the terminal scripts.

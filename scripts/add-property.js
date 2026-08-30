@@ -54,8 +54,8 @@ async function main() {
   const priceRaw = await ask(type === 'rent' ? 'Monthly rent (numbers only, e.g. 45000): ' : 'Sale price (numbers only, e.g. 12500000): ');
   const price = Number(priceRaw.replace(/[,\s]/g, ''));
   const priceUnit = type === 'rent' ? 'month' : 'total';
-  const brokerage = await ask(`Brokerage terms [default: ${type === 'rent' ? "1 month's rent" : '1% of deal value'}]: `)
-    || (type === 'rent' ? "1 month's rent" : '1% of deal value');
+  const brokerage = await ask(`Brokerage terms [default: ${type === 'rent' ? "3 months' rent (from both landlord and tenant)" : '2% of deal value (from both parties)'}]: `)
+    || (type === 'rent' ? "3 months' rent (from both landlord and tenant)" : '2% of deal value (from both parties)');
   const bedrooms = Number(await ask('Bedrooms (e.g. 2): ')) || 0;
   const bathrooms = Number(await ask('Bathrooms (e.g. 2): ')) || 0;
   const areaSqft = Number(await ask('Area in sqft (e.g. 1100): ')) || 0;
