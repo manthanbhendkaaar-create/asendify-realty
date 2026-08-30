@@ -84,6 +84,20 @@ DNS usually resolves within a few minutes to a few hours.
 ## Publishing new listings after launch
 Every time you run `add-property.js` or `update-status.js` and say yes to "commit and push", GitHub Pages rebuilds automatically — no redeploy step needed.
 
+## SEO — targeting Koregaon Park, Kalyani Nagar & Viman Nagar only
+Since the business only serves these three localities, the site is built to rank for them specifically rather than "Pune real estate" broadly:
+
+- **Dedicated landing pages** — `koregaon-park.html`, `kalyani-nagar.html`, `viman-nagar.html` each have real, static (crawlable) text about the area, an FAQ block, and a live listings grid filtered to that locality. These are the pages most likely to rank for searches like "flat for rent in Kalyani Nagar."
+- **Meta tags & Open Graph** — every page has a locality-relevant `<title>`, meta description, canonical URL, and Open Graph tags for link previews.
+- **Structured data (JSON-LD)** — `RealEstateAgent` schema with `areaServed` on the homepage and each locality page; a `Residence` schema is injected per listing on `property.html` via JS.
+- **`sitemap.xml` + `robots.txt`** — sitemap lists all static pages plus every available listing, regenerated automatically by `scripts/generate-sitemap.js` (which `add-property.js` and `update-status.js` call for you). `robots.txt` allows full crawling and points to the sitemap.
+- **Internal linking** — every page's nav and footer link to all three locality pages and back to the full listings page, and the homepage has a dedicated "Where we operate" section.
+
+### After going live, also do this (can't be automated from here):
+1. **Google Search Console** — verify `realty.asendify.co` (Settings → Pages custom domain already gives you the DNS you need) and submit `https://realty.asendify.co/sitemap.xml`.
+2. **Google Business Profile** — create one for Asendify Realty with Koregaon Park/Kalyani Nagar/Viman Nagar as service areas; this matters more for local search ranking than on-page SEO alone.
+3. Keep posting real listings regularly — fresh, real content (not just template pages) is what actually moves rankings over time.
+
 ## Terms & Fees gate
 First-time visitors see a blocking "Terms & Fees" popup (`assets/js/terms.js`) before they can use the site — it covers brokerage (3 months' rent for renting, 1% of sale value for buying/selling), token/booking amounts, security deposits, documentation charges, cancellation/refund policy, and a no-hidden-fees clause. They must tick the checkbox and click "I Agree" to continue; their acceptance is remembered in the browser (`localStorage`) so they won't see it again on that device. Anyone can re-read it anytime via the "Terms & Fees" link in the footer, which reopens the same content without the lock.
 

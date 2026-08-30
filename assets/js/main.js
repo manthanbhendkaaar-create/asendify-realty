@@ -92,9 +92,12 @@ async function initListings() {
   localitySel.innerHTML = '<option value="">All localities</option>' +
     localities.map(l => `<option value="${l}">${l}</option>`).join('');
 
-  // Preselect type from ?type=rent|buy in URL
+  // Preselect type/locality from ?type=rent|buy and ?locality=... in URL
   const params = new URLSearchParams(location.search);
   if (params.get('type')) typeSel.value = params.get('type');
+  if (params.get('locality') && localities.includes(params.get('locality'))) {
+    localitySel.value = params.get('locality');
+  }
 
   function applyFilters() {
     let list = [...all];
@@ -137,6 +140,23 @@ async function initDetail() {
   }
 
   document.title = `${p.title} — Asendify Realty`;
+  const metaDesc = document.querySelector('meta[name="description"]');
+  const descText = `${p.title} — ${p.bedrooms} BHK ${p.propertyType.toLowerCase()} in ${p.locality}, Pune. ${p.areaSqft} sqft, ${p.furnishing.toLowerCase()}. ${p.type === 'rent' ? 'Available for rent' : 'Available for sale'} via Asendify Realty.`;
+  if (metaDesc) metaDesc.setAttribute('content', descText);
+
+  const ldJson = document.createElement('script');
+  ldJson.type = 'application/ld+json';
+  ldJson.textContent = JSON.stringify({
+    '@context': 'https://schema.org',
+    '@type': 'Residence',
+    name: p.title,
+    description: descText,
+    address: { '@type': 'PostalAddress', addressLocality: p.locality, addressRegion: 'Maharashtra', addressCountry: 'IN' },
+    numberOfRooms: p.bedrooms,
+    floorSize: { '@type': 'QuantitativeValue', value: p.areaSqft, unitCode: 'FTK' },
+  });
+  document.head.appendChild(ldJson);
+
   const images = p.images && p.images.length ? p.images : [];
   const thumbs = images.map((src, i) =>
     `<img src="${src}" data-src="${src}" class="${i === 0 ? 'active' : ''}" alt="${p.title} photo ${i + 1}">`
@@ -195,9 +215,25 @@ function initModeToggle() {
   });
 }
 
+// ---- Locality landing pages (koregaon-park.html, kalyani-nagar.html, viman-nagar.html) ----
+async function initLocalityPage() {
+  const el = document.getElementById('locality-grid');
+  if (!el) return;
+  const locality = el.dataset.locality;
+  try {
+    const all = await loadProperties();
+    const matches = all.filter(p => p.status === 'available' && p.locality === locality);
+    renderGrid(el, matches);
+  } catch (e) {
+    el.innerHTML = `<div class="empty-state">Listings are loading — refresh in a moment.</div>`;
+    console.error(e);
+  }
+}
+
 document.addEventListener('DOMContentLoaded', () => {
   initModeToggle();
   initHome();
   initListings();
   initDetail();
+  initLocalityPage();
 });

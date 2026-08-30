@@ -130,6 +130,12 @@ async function main() {
   fs.writeFileSync(DATA_PATH, JSON.stringify(properties, null, 2) + '\n');
   console.log(`\n✅  Added "${title}" to data/properties.json (id: ${id}).`);
 
+  try {
+    execSync('node scripts/generate-sitemap.js', { cwd: ROOT, stdio: 'inherit' });
+  } catch {
+    console.log('⚠️  Could not regenerate sitemap.xml automatically — run `node scripts/generate-sitemap.js` manually.');
+  }
+
   const publish = (await ask('\nCommit and push now so the live site updates? [y/n]: ')).toLowerCase();
   if (publish === 'y') {
     try {
