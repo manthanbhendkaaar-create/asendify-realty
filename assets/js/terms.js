@@ -22,8 +22,7 @@ const TERMS_HTML = `
   <h3 style="font-size:16px;margin:20px 0 8px;">3. Token / booking amount</h3>
   <ul>
     <li>A token amount may be requested to hold a shortlisted property while paperwork is finalised. This is separate from brokerage.</li>
-    <li>If you withdraw after the owner has been informed of your confirmed interest, the token is <strong>non-refundable</strong>.</li>
-    <li>If the owner withdraws, or the property turns out to be materially misrepresented, the token is refunded in full.</li>
+    <li>The token amount is <strong>non-refundable under any circumstances</strong> once paid — this applies regardless of who withdraws from the deal, why, or at what stage.</li>
   </ul>
 
   <h3 style="font-size:16px;margin:20px 0 8px;">4. Security deposit</h3>
@@ -41,7 +40,7 @@ const TERMS_HTML = `
   <h3 style="font-size:16px;margin:20px 0 8px;">6. Cancellation &amp; refund policy</h3>
   <ul>
     <li>Once the rental agreement or sale deed is signed, brokerage already paid is <strong>non-refundable</strong>.</li>
-    <li>If a deal falls through before any agreement is signed, brokerage collected (if any) is refunded in full; token amounts follow the policy in Section 2.</li>
+    <li>If a deal falls through before any agreement is signed, brokerage collected (if any) is refunded in full; the token amount is not — see Section 3.</li>
   </ul>
 
   <h3 style="font-size:16px;margin:20px 0 8px;">7. No hidden fees</h3>
