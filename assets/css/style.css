@@ -1,0 +1,241 @@
+/* ============================================================
+   ASENDIFY REALTY — Design tokens
+   Palette drawn from Pune's own materials: basalt stone, red
+   laterite roof tiles, old brass door hardware, monsoon green.
+   ============================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap');
+
+:root{
+  --ink:        #1c1b19;   /* basalt / near-black */
+  --stone:      #4a4640;   /* weathered stone, secondary text */
+  --paper:      #f1e9dc;   /* limestone paper background */
+  --paper-dim:  #e4d8c4;   /* deeper paper, card fields */
+  --terracotta: #b5502d;   /* laterite roof tile, primary accent */
+  --terracotta-dark: #8f3e21;
+  --brass:      #9c7a3c;   /* old key / door hardware */
+  --brass-light:#c9a668;
+  --monsoon:    #2f4a3c;   /* used sparingly: greenery accent */
+  --line:       rgba(28,27,25,0.14);
+  --line-light: rgba(241,233,220,0.22);
+
+  --font-display: 'Fraunces', Georgia, serif;
+  --font-body:    'Inter', -apple-system, sans-serif;
+  --font-mono:    'IBM Plex Mono', 'Courier New', monospace;
+
+  --radius: 2px;
+  --shadow-card: 0 10px 24px -12px rgba(28,27,25,0.35);
+}
+
+*{ box-sizing:border-box; }
+html{ scroll-behavior:smooth; }
+body{
+  margin:0;
+  background:var(--paper);
+  color:var(--ink);
+  font-family:var(--font-body);
+  line-height:1.55;
+  -webkit-font-smoothing:antialiased;
+}
+img{ max-width:100%; display:block; }
+a{ color:inherit; text-decoration:none; }
+button{ font-family:inherit; cursor:pointer; }
+:focus-visible{ outline:2px solid var(--terracotta); outline-offset:2px; }
+
+.wrap{ max-width:1180px; margin:0 auto; padding:0 24px; }
+
+/* ---------- Type ---------- */
+h1,h2,h3{ font-family:var(--font-display); font-weight:600; letter-spacing:-0.01em; color:var(--ink); margin:0; }
+.eyebrow{
+  font-family:var(--font-mono); text-transform:uppercase; letter-spacing:0.14em;
+  font-size:12px; color:var(--terracotta); font-weight:600;
+}
+.mono{ font-family:var(--font-mono); }
+
+/* ---------- Header ---------- */
+.site-header{
+  position:sticky; top:0; z-index:40;
+  background:rgba(241,233,220,0.92);
+  backdrop-filter:blur(8px);
+  border-bottom:1px solid var(--line);
+}
+.site-header .wrap{ display:flex; align-items:center; justify-content:space-between; height:76px; }
+.brand{ display:flex; align-items:baseline; gap:8px; font-family:var(--font-display); font-size:22px; font-weight:700; }
+.brand .sub{ font-family:var(--font-mono); font-size:11px; letter-spacing:0.12em; color:var(--brass); text-transform:uppercase; }
+.nav-links{ display:flex; gap:32px; font-size:15px; font-weight:500; }
+.nav-links a{ position:relative; padding-bottom:4px; }
+.nav-links a::after{
+  content:''; position:absolute; left:0; right:0; bottom:-2px; height:2px;
+  background:var(--terracotta); transform:scaleX(0); transform-origin:left; transition:transform .2s ease;
+}
+.nav-links a:hover::after{ transform:scaleX(1); }
+.btn{
+  display:inline-flex; align-items:center; gap:8px;
+  padding:11px 22px; border-radius:var(--radius);
+  font-weight:600; font-size:14px; border:1px solid transparent;
+  transition:transform .15s ease, background .15s ease, border-color .15s ease;
+}
+.btn-primary{ background:var(--terracotta); color:var(--paper); }
+.btn-primary:hover{ background:var(--terracotta-dark); transform:translateY(-1px); }
+.btn-outline{ border-color:var(--ink); color:var(--ink); }
+.btn-outline:hover{ background:var(--ink); color:var(--paper); }
+.btn-ghost{ color:var(--ink); border-bottom:1px solid var(--ink); border-radius:0; padding:4px 0; }
+
+/* ---------- Hero ---------- */
+.hero{ padding:76px 0 56px; position:relative; overflow:hidden; }
+.hero-grid{ display:grid; grid-template-columns:1.1fr 0.9fr; gap:56px; align-items:center; }
+.hero h1{ font-size:clamp(38px,5vw,58px); line-height:1.04; margin-bottom:22px; }
+.hero h1 em{ font-style:italic; color:var(--terracotta); }
+.hero p.lede{ font-size:18px; color:var(--stone); max-width:46ch; margin-bottom:32px; }
+.hero-ctas{ display:flex; gap:14px; flex-wrap:wrap; }
+
+/* Toggle: Rent / Buy — the ledger tab */
+.mode-toggle{
+  display:inline-flex; border:1.5px solid var(--ink); border-radius:999px; padding:4px; margin-bottom:28px;
+  font-family:var(--font-mono); font-size:13px; font-weight:600; letter-spacing:0.04em;
+}
+.mode-toggle button{
+  border:none; background:transparent; padding:9px 22px; border-radius:999px; color:var(--stone);
+  transition:background .15s ease, color .15s ease;
+}
+.mode-toggle button.active{ background:var(--ink); color:var(--paper); }
+
+/* Signature element: the key tag */
+.keytag{
+  position:relative;
+  background:var(--paper-dim);
+  border:1.5px solid var(--ink);
+  border-radius:10px;
+  padding:34px 28px 28px;
+  box-shadow:var(--shadow-card);
+  transform:rotate(-2deg);
+}
+.keytag::before{
+  content:'';
+  position:absolute; top:16px; left:24px;
+  width:16px; height:16px; border-radius:50%;
+  background:var(--paper); border:2px solid var(--ink);
+}
+.keytag .tag-string{
+  position:absolute; top:-38px; left:32px; width:2px; height:40px;
+  background:repeating-linear-gradient(var(--ink) 0 6px, transparent 6px 10px);
+  transform:rotate(8deg);
+}
+.keytag .tag-label{ font-family:var(--font-mono); font-size:12px; letter-spacing:0.1em; color:var(--brass); text-transform:uppercase; margin-bottom:10px;}
+.keytag h3{ font-size:22px; margin-bottom:6px; }
+.keytag .tag-price{ font-family:var(--font-mono); font-size:26px; font-weight:600; color:var(--terracotta); margin:14px 0 4px; }
+.keytag .tag-meta{ font-size:13px; color:var(--stone); }
+
+/* ---------- Section shell ---------- */
+section{ padding:72px 0; }
+.section-head{ margin-bottom:40px; max-width:640px; }
+.section-head h2{ font-size:clamp(28px,3.4vw,38px); margin-top:10px; }
+.section-head p{ color:var(--stone); margin-top:12px; font-size:16px; }
+.divider{ height:1px; background:var(--line); border:none; margin:0; }
+
+/* ---------- Filters bar ---------- */
+.filters{
+  display:flex; flex-wrap:wrap; gap:12px; align-items:center;
+  padding:18px 20px; background:var(--paper-dim); border:1px solid var(--line); border-radius:8px; margin-bottom:36px;
+}
+.filters select, .filters input{
+  font-family:var(--font-mono); font-size:13px; padding:9px 12px;
+  border:1px solid var(--ink); border-radius:4px; background:var(--paper); color:var(--ink);
+}
+.filters .count{ margin-left:auto; font-family:var(--font-mono); font-size:13px; color:var(--stone); }
+
+/* ---------- Property grid & card (the key tag, repeated) ---------- */
+.grid-properties{ display:grid; grid-template-columns:repeat(auto-fill,minmax(300px,1fr)); gap:28px; }
+.pcard{
+  background:var(--paper); border:1.5px solid var(--ink); border-radius:10px; overflow:hidden;
+  display:flex; flex-direction:column; transition:transform .18s ease, box-shadow .18s ease;
+}
+.pcard:hover{ transform:translateY(-4px); box-shadow:var(--shadow-card); }
+.pcard .photo{ position:relative; aspect-ratio:4/3; background:var(--paper-dim); overflow:hidden; }
+.pcard .photo img{ width:100%; height:100%; object-fit:cover; }
+.pcard .badge{
+  position:absolute; top:12px; left:12px; background:var(--ink); color:var(--paper);
+  font-family:var(--font-mono); font-size:11px; letter-spacing:0.08em; text-transform:uppercase;
+  padding:5px 10px; border-radius:999px;
+}
+.pcard .badge.buy{ background:var(--terracotta); }
+.pcard .punch{
+  position:absolute; top:-10px; left:24px; width:14px; height:14px; border-radius:50%;
+  background:var(--paper); border:2px solid var(--ink);
+}
+.pcard .body{ padding:18px 18px 20px; display:flex; flex-direction:column; gap:8px; flex:1; }
+.pcard .locality{ font-family:var(--font-mono); font-size:11px; letter-spacing:0.1em; text-transform:uppercase; color:var(--brass); }
+.pcard h3{ font-size:19px; }
+.pcard .specs{ font-size:13px; color:var(--stone); }
+.pcard .price-row{ margin-top:auto; display:flex; align-items:baseline; justify-content:space-between; padding-top:12px; border-top:1px dashed var(--line); }
+.pcard .price{ font-family:var(--font-mono); font-weight:600; font-size:19px; color:var(--terracotta); }
+.pcard .price .unit{ font-size:12px; color:var(--stone); font-weight:400; }
+.pcard .view-link{ font-family:var(--font-mono); font-size:12px; font-weight:600; border-bottom:1px solid var(--ink); }
+
+/* ---------- How it works ---------- */
+.steps{ display:grid; grid-template-columns:repeat(3,1fr); gap:32px; }
+.step{ border-top:2px solid var(--ink); padding-top:16px; }
+.step .num{ font-family:var(--font-mono); color:var(--terracotta); font-size:13px; }
+.step h3{ font-size:19px; margin:8px 0 8px; }
+.step p{ color:var(--stone); font-size:14.5px; }
+
+/* ---------- Property detail page ---------- */
+.detail-grid{ display:grid; grid-template-columns:1.4fr 1fr; gap:48px; align-items:start; }
+.gallery-main{ aspect-ratio:4/3; border-radius:10px; overflow:hidden; border:1.5px solid var(--ink); background:var(--paper-dim); }
+.gallery-main img{ width:100%; height:100%; object-fit:cover; }
+.gallery-thumbs{ display:flex; gap:10px; margin-top:10px; }
+.gallery-thumbs img{ width:78px; height:58px; object-fit:cover; border-radius:4px; border:1.5px solid var(--line); cursor:pointer; }
+.gallery-thumbs img.active{ border-color:var(--terracotta); }
+
+.detail-panel{
+  border:1.5px solid var(--ink); border-radius:10px; padding:28px; position:sticky; top:100px;
+  background:var(--paper-dim);
+}
+.detail-panel .locality{ font-family:var(--font-mono); font-size:12px; letter-spacing:0.1em; text-transform:uppercase; color:var(--brass); }
+.detail-panel h1{ font-size:28px; margin:8px 0 14px; }
+.detail-panel .price{ font-family:var(--font-mono); font-size:30px; font-weight:600; color:var(--terracotta); }
+.detail-panel .price .unit{ font-size:14px; color:var(--stone); font-weight:400; }
+.spec-table{ margin:22px 0; border-top:1px solid var(--line); }
+.spec-table div{ display:flex; justify-content:space-between; padding:10px 0; border-bottom:1px dashed var(--line); font-size:14px; }
+.spec-table span:first-child{ color:var(--stone); }
+.spec-table span:last-child{ font-family:var(--font-mono); font-weight:600; }
+.amenity-list{ display:flex; flex-wrap:wrap; gap:8px; margin:18px 0; }
+.amenity-list span{
+  font-family:var(--font-mono); font-size:12px; background:var(--paper); border:1px solid var(--line);
+  padding:6px 10px; border-radius:999px;
+}
+.brokerage-note{
+  font-size:13px; color:var(--stone); background:var(--paper); border-left:3px solid var(--brass);
+  padding:10px 14px; margin:18px 0; border-radius:4px;
+}
+.whatsapp-btn{
+  display:flex; align-items:center; justify-content:center; gap:10px; width:100%;
+  background:#25D366; color:#0b3d20; font-weight:700; padding:15px; border-radius:8px; font-size:15px;
+  margin-top:8px;
+}
+.whatsapp-btn:hover{ filter:brightness(0.95); }
+.detail-desc{ font-size:15.5px; color:var(--stone); line-height:1.7; margin-top:24px; }
+.back-link{ font-family:var(--font-mono); font-size:13px; margin-bottom:24px; display:inline-block; }
+
+/* ---------- Footer ---------- */
+footer{ background:var(--ink); color:var(--paper); padding:56px 0 32px; margin-top:40px; }
+footer .wrap{ display:flex; justify-content:space-between; flex-wrap:wrap; gap:24px; }
+footer .brand{ color:var(--paper); }
+footer p{ color:rgba(241,233,220,0.6); font-size:14px; max-width:36ch; }
+footer .fine{ border-top:1px solid rgba(241,233,220,0.15); margin-top:32px; padding-top:20px; font-size:12.5px; color:rgba(241,233,220,0.45); font-family:var(--font-mono); }
+
+/* ---------- Empty state ---------- */
+.empty-state{ text-align:center; padding:60px 20px; color:var(--stone); font-family:var(--font-mono); }
+
+/* ---------- Responsive ---------- */
+@media (max-width: 860px){
+  .hero-grid{ grid-template-columns:1fr; }
+  .nav-links{ display:none; }
+  .steps{ grid-template-columns:1fr; }
+  .detail-grid{ grid-template-columns:1fr; }
+  .detail-panel{ position:static; }
+}
+
+@media (prefers-reduced-motion: reduce){
+  *{ transition:none !important; animation:none !important; }
+}

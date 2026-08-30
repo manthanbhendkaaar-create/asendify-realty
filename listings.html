@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>All Listings — Asendify Realty</title>
+<meta name="description" content="Browse rental and resale properties across Pune from Asendify Realty.">
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="wrap">
+    <a href="index.html" class="brand">Asendify <span class="sub">Realty</span></a>
+    <nav class="nav-links">
+      <a href="listings.html?type=rent">Rent</a>
+      <a href="listings.html?type=buy">Buy</a>
+      <a href="listings.html">All Listings</a>
+      <a href="index.html#how-it-works">How it works</a>
+    </nav>
+    <a class="btn btn-primary" href="index.html">Home</a>
+  </div>
+</header>
+
+<section style="padding-top:48px;padding-bottom:24px;">
+  <div class="wrap">
+    <span class="eyebrow">Pune, only Pune</span>
+    <h1 style="font-size:clamp(30px,4vw,42px);margin-top:12px;">All listings</h1>
+  </div>
+</section>
+
+<section style="padding-top:0;">
+  <div class="wrap">
+    <div class="filters">
+      <select id="filter-type">
+        <option value="">Rent or Buy</option>
+        <option value="rent">For Rent</option>
+        <option value="buy">For Sale</option>
+      </select>
+      <select id="filter-bhk">
+        <option value="">Any BHK</option>
+        <option value="1">1 BHK</option>
+        <option value="2">2 BHK</option>
+        <option value="3">3 BHK</option>
+        <option value="4">4+ BHK</option>
+      </select>
+      <select id="filter-locality">
+        <option value="">All localities</option>
+      </select>
+      <select id="filter-sort">
+        <option value="newest">Newest first</option>
+        <option value="price-asc">Price: low to high</option>
+        <option value="price-desc">Price: high to low</option>
+      </select>
+      <span id="results-count" class="count mono"></span>
+    </div>
+
+    <div id="listings-grid" class="grid-properties">
+      <div class="empty-state">Loading listings&hellip;</div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div>
+      <a href="index.html" class="brand">Asendify <span class="sub" style="color:var(--brass-light);">Realty</span></a>
+      <p>Rentals and resale across Pune. Message us on WhatsApp from any listing to get started.</p>
+    </div>
+  </div>
+  <div class="wrap fine">&copy; 2026 Asendify Realty. Pune, Maharashtra.</div>
+</footer>
+
+<script src="assets/js/main.js"></script>
+</body>
+</html>

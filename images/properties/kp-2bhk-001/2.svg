@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600">
+  <rect width="800" height="600" fill="#E4D8C4"/>
+  <rect x="10" y="10" width="780" height="580" fill="none" stroke="#B5502D" stroke-width="4"/>
+  <text x="400" y="290" font-family="Georgia, serif" font-size="30" fill="#4A4640" text-anchor="middle">Koregaon Park &#183; Balcony</text>
+  <text x="400" y="325" font-family="monospace" font-size="14" fill="#9C7A3C" text-anchor="middle">Photo placeholder</text>
+</svg>
