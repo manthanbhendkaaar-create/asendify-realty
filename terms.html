@@ -1,10 +1,35 @@
-/* Asendify Realty — Terms & Conditions gate
-   Blocks the site behind an "I agree" screen on first visit, and exposes
-   a re-openable, non-blocking view via any element with data-open-terms. */
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Terms &amp; Fees | Asendify Realty</title>
+<meta name="description" content="Asendify Realty brokerage fees, 45% service fee, token amount, deposit and cancellation terms for rentals and sales in Pune.">
+<link rel="canonical" href="https://realty.asendify.co/terms.html">
+<meta property="og:title" content="Terms &amp; Fees | Asendify Realty">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://realty.asendify.co/terms.html">
+<meta name="twitter:card" content="summary">
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
 
-const TERMS_KEY = 'asendify_realty_terms_v1';
+<header class="site-header">
+  <div class="wrap">
+    <a href="index.html" class="brand">Asendify <span class="sub">Realty</span></a>
+    <nav class="nav-links">
+      <a href="koregaon-park.html">Koregaon Park</a>
+      <a href="kalyani-nagar.html">Kalyani Nagar</a>
+      <a href="viman-nagar.html">Viman Nagar</a>
+      <a href="listings.html">All Listings</a>
+    </nav>
+    <a class="btn btn-primary" href="index.html">Home</a>
+  </div>
+</header>
 
-const TERMS_HTML = `
+<section style="padding-top:48px;">
+  <div class="wrap" style="max-width:780px;">
+
   <h2 style="font-size:24px;margin-bottom:4px;">Terms &amp; Fees</h2>
   <p class="mono" style="font-size:12px;color:var(--brass);margin-bottom:22px;">Asendify Realty &middot; Pune &middot; please read before proceeding</p>
 
@@ -51,97 +76,28 @@ const TERMS_HTML = `
 
   <h3 style="font-size:16px;margin:20px 0 8px;">9. Contact &amp; disputes</h3>
   <p>All enquiries are handled over WhatsApp/email with Asendify Realty. Any disputes are subject to resolution in Pune, Maharashtra.</p>
-`;
 
-function injectTermsStyles() {
-  if (document.getElementById('terms-gate-styles')) return;
-  const style = document.createElement('style');
-  style.id = 'terms-gate-styles';
-  style.textContent = `
-    .terms-overlay{
-      position:fixed; inset:0; z-index:1000;
-      background:rgba(28,27,25,0.72);
-      display:flex; align-items:center; justify-content:center; padding:24px;
-    }
-    .terms-modal{
-      background:var(--paper); border:1.5px solid var(--ink); border-radius:10px;
-      max-width:640px; width:100%; max-height:85vh; display:flex; flex-direction:column;
-      box-shadow:0 24px 60px -20px rgba(0,0,0,0.5);
-    }
-    .terms-modal .terms-body{ overflow-y:auto; padding:28px 30px 10px; }
-    .terms-modal .terms-body ul{ margin:8px 0 14px; padding-left:20px; }
-    .terms-modal .terms-body li{ margin-bottom:6px; font-size:14.5px; color:var(--stone); }
-    .terms-modal .terms-body p{ font-size:14.5px; color:var(--stone); }
-    .terms-modal .terms-footer{
-      border-top:1px solid var(--line); padding:18px 30px 24px; background:var(--paper-dim);
-      border-radius:0 0 10px 10px;
-    }
-    .terms-check{ display:flex; align-items:flex-start; gap:10px; font-size:13.5px; margin-bottom:16px; color:var(--ink); }
-    .terms-check input{ margin-top:3px; }
-    .terms-actions{ display:flex; gap:12px; }
-    .terms-actions .btn-primary:disabled{ opacity:0.4; cursor:not-allowed; }
-    body.terms-locked{ overflow:hidden; }
-  `;
-  document.head.appendChild(style);
-}
+  </div>
+</section>
 
-function buildModal({ blocking }) {
-  const overlay = document.createElement('div');
-  overlay.className = 'terms-overlay';
-  overlay.innerHTML = `
-    <div class="terms-modal">
-      <div class="terms-body">${TERMS_HTML}</div>
-      <div class="terms-footer">
-        ${blocking ? `
-          <label class="terms-check">
-            <input type="checkbox" id="terms-checkbox">
-            I have read and agree to Asendify Realty's brokerage fees, deposit, and cancellation terms above.
-          </label>
-          <div class="terms-actions">
-            <button class="btn btn-primary" id="terms-agree" disabled>I Agree — Continue to site</button>
-          </div>
-        ` : `
-          <div class="terms-actions">
-            <button class="btn btn-outline" id="terms-close">Close</button>
-          </div>
-        `}
-      </div>
+<footer>
+  <div class="wrap">
+    <div>
+      <a href="index.html" class="brand">Asendify <span class="sub" style="color:var(--brass-light);">Realty</span></a>
+      <p>Rentals and resale across Pune. Message us on WhatsApp from any listing to get started.</p>
     </div>
-  `;
-  return overlay;
-}
-
-function openTerms({ blocking }) {
-  injectTermsStyles();
-  const overlay = buildModal({ blocking });
-  document.body.appendChild(overlay);
-  if (blocking) document.body.classList.add('terms-locked');
-
-  if (blocking) {
-    const checkbox = overlay.querySelector('#terms-checkbox');
-    const agreeBtn = overlay.querySelector('#terms-agree');
-    checkbox.addEventListener('change', () => { agreeBtn.disabled = !checkbox.checked; });
-    agreeBtn.addEventListener('click', () => {
-      try { localStorage.setItem(TERMS_KEY, new Date().toISOString()); } catch (e) {}
-      document.body.classList.remove('terms-locked');
-      overlay.remove();
-    });
-  } else {
-    overlay.querySelector('#terms-close').addEventListener('click', () => overlay.remove());
-  }
-}
-
-function initTermsGate() {
-  let accepted = null;
-  try { accepted = localStorage.getItem(TERMS_KEY); } catch (e) { accepted = 'unavailable'; }
-  if (!accepted) openTerms({ blocking: true });
-
-  document.querySelectorAll('[data-open-terms]').forEach(el => {
-    el.addEventListener('click', (e) => {
-      e.preventDefault();
-      openTerms({ blocking: false });
-    });
-  });
-}
-
-document.addEventListener('DOMContentLoaded', initTermsGate);
+    <div>
+      <p style="color:var(--paper);font-weight:600;margin-bottom:8px;">Areas</p>
+      <p><a href="koregaon-park.html">Koregaon Park</a></p>
+      <p><a href="kalyani-nagar.html">Kalyani Nagar</a></p>
+      <p><a href="viman-nagar.html">Viman Nagar</a></p>
+    </div>
+    <div>
+      <p style="color:var(--paper);font-weight:600;margin-bottom:8px;">Legal</p>
+      <p><a href="terms.html">Terms &amp; Fees</a></p>
+    </div>
+  </div>
+  <div class="wrap fine">&copy; 2026 Asendify Realty. Pune, Maharashtra.</div>
+</footer>
+</body>
+</html>

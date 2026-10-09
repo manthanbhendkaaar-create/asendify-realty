@@ -10,6 +10,8 @@
 ## Brokerage (fees)
 - Rentals: 3 months' rent, charged to both the landlord and the tenant.
 - Sales/purchases: 2% of the sale value, charged to both the buyer and the seller.
+- A 45% service fee is added on top of every fee paid to Asendify Realty.
+- Full terms: https://realty.asendify.co/terms.html
 
 ## Pages
 - [Home](https://realty.asendify.co/): Overview, how brokerage works and featured listings.

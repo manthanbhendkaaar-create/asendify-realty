@@ -186,7 +186,7 @@ async function initDetail() {
           <div><span>Area</span><span>${p.areaSqft} sqft</span></div>
           <div><span>Furnishing</span><span>${p.furnishing}</span></div>
         </div>
-        <div class="brokerage-note">Brokerage: ${p.brokerage}. Payable on confirming the deal.</div>
+        <div class="brokerage-note">Brokerage: ${p.brokerage} + 45% service fee. Payable on confirming the deal.</div>
         <a class="whatsapp-btn" target="_blank" rel="noopener" href="${whatsappLink(p)}">
           Message us on WhatsApp
         </a>
