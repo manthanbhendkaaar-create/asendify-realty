@@ -1,0 +1,24 @@
+# Asendify Realty
+
+> Asendify Realty is a Pune real estate brokerage that lists flats for rent and for sale in three localities only: Koregaon Park, Kalyani Nagar and Viman Nagar. It is part of Asendify (asendify.co). Enquiries and site visits are arranged on WhatsApp: +91 90960 82894.
+
+## How it works
+- Browse listings by locality, type (rent or buy), BHK and budget, then message on WhatsApp from any listing.
+- Asendify Realty checks requirements against available inventory and arranges site visits.
+- Brokerage is due only once the deal is confirmed.
+
+## Brokerage (fees)
+- Rentals: 3 months' rent, charged to both the landlord and the tenant.
+- Sales/purchases: 2% of the sale value, charged to both the buyer and the seller.
+
+## Pages
+- [Home](https://realty.asendify.co/): Overview, how brokerage works and featured listings.
+- [All listings](https://realty.asendify.co/listings.html): Every flat for rent or sale, filterable by locality, BHK and budget. [Rent](https://realty.asendify.co/listings.html?type=rent) · [Buy](https://realty.asendify.co/listings.html?type=buy)
+- [Koregaon Park](https://realty.asendify.co/koregaon-park.html): Flats for rent and sale in Koregaon Park, near North Main Road and Osho Garden.
+- [Kalyani Nagar](https://realty.asendify.co/kalyani-nagar.html): Flats for rent and sale in Kalyani Nagar, near the airport and IT parks.
+- [Viman Nagar](https://realty.asendify.co/viman-nagar.html): Flats and studios for rent and sale in Viman Nagar, near EON IT Park and Phoenix Marketcity.
+- Property pages: https://realty.asendify.co/property.html?id=<listing id> (each listing shows price, size, furnishing, amenities and brokerage).
+
+## Contact
+- WhatsApp: +91 90960 82894
+- Parent company: [Asendify](https://www.asendify.co/)
