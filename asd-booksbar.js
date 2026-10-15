@@ -30,7 +30,7 @@
         var h = bar.offsetHeight;
         document.body.style.paddingTop = (basePad + h) + 'px';
         moved = moved.concat(topEls());
-        moved.forEach(function (el) { el.style.top = h + 'px'; });
+        moved.forEach(function (el) { el.style.setProperty('top', h + 'px', 'important'); });
       }
       apply(); setTimeout(apply, 600); setTimeout(apply, 2000);
       addEventListener('resize', apply);
