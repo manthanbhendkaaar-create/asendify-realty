@@ -1,21 +1,25 @@
 #!/usr/bin/env python3
-"""Nightly service-blog build for the GitHub Pages sites (2026-10-17).
-Articles are written into Supabase shop_articles by the nightly agent and rendered by
-https://playbook.asendify.co/api/blog?svc=<key>. This copies them into static files:
-  blog/<slug>/index.html, blog index cards, blog-sitemap.xml, then pings IndexNow.
-Usage: python3 scripts/build_service_blog.py <svc> <mode>   (mode: template | shell)
+"""Service-blog static build for the GitHub Pages sites (2026-10-17).
+The nightly agent writes articles into Supabase shop_articles (product = agency | realty). It then saves the
+new/changed rows (slug,title,description,keyword,body_md,status,published_at,updated_at) as a JSON list and runs:
+  python3 scripts/build_service_blog.py <svc> <template|shell> <rows.json>
+This merges them into blog/_articles.json, renders each page with the same code as
+playbook.asendify.co/api/blog?svc=<svc> (via ../asendify-shop/scripts/render_static.mjs), writes
+blog/<slug>/index.html, the blog index and blog-sitemap.xml. Then: git add -A blog blog-sitemap.xml, commit, push,
+and IndexNow for the new URLs.
 """
-import json, re, sys, os, html, urllib.request, datetime
+import json, re, sys, os, html, subprocess, datetime, tempfile
 
-API = 'https://playbook.asendify.co/api/blog'
-svc, mode = sys.argv[1], sys.argv[2]
+svc, mode, rows_file = sys.argv[1], sys.argv[2], sys.argv[3]
+SHOP = os.environ.get('SHOP_DIR', os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', '..', 'asendify-shop'))
 TEMPLATE = 'blog/how-to-get-more-watch-time-on-youtube/index.html'
+MANIFEST = 'blog/_articles.json'
+_ALL = None
 
 def get(qs, raw=False):
-    req = urllib.request.Request(f'{API}?svc={svc}&{qs}', headers={'User-Agent': 'asendify-blog-build'})
-    with urllib.request.urlopen(req, timeout=60) as r:
-        b = r.read().decode('utf-8')
-    return b if raw else json.loads(b)
+    r = subprocess.run(['node', os.path.join(SHOP, 'scripts', 'render_static.mjs'), _ALL, f'svc={svc}&{qs}'], capture_output=True, text=True, timeout=120)
+    if r.returncode: raise SystemExit(f'render failed for {qs}: {r.stderr[-500:]}')
+    return r.stdout if raw else json.loads(r.stdout)
 
 def esc(s): return html.escape(str(s or ''), quote=True)
 
@@ -65,32 +69,36 @@ def add_card(f, mins):
     open(p, 'w', encoding='utf-8').write(t)
 
 def main():
-    exp = get('export=1')
-    new = []
-    for a in exp['articles']:
-        slug = re.sub(r'[^a-z0-9-]', '', a['slug'].lower())
+    global _ALL
+    new = json.load(open(rows_file, encoding='utf-8'))
+    man = json.load(open(MANIFEST, encoding='utf-8')) if os.path.exists(MANIFEST) else []
+    by = {r['slug']: r for r in man}
+    for r in new:
+        r['slug'] = re.sub(r'[^a-z0-9-]', '', r['slug'].lower())
+        by[r['slug']] = {k: r.get(k) for k in ('slug', 'title', 'description', 'keyword', 'body_md', 'status', 'published_at', 'updated_at')}
+    rows = sorted(by.values(), key=lambda r: r['published_at'] or '', reverse=True)
+    os.makedirs('blog', exist_ok=True)
+    json.dump(rows, open(MANIFEST, 'w', encoding='utf-8'), ensure_ascii=False, indent=1)
+    tf = tempfile.NamedTemporaryFile('w', suffix='.json', delete=False, encoding='utf-8'); json.dump(rows, tf); tf.close(); _ALL = tf.name
+    live = {a['slug'] for a in get('export=1')['articles']}
+    changed = []
+    for slug in [r['slug'] for r in new]:
+        if slug not in live: print('not live yet (status/published_at):', slug); continue
         out = f'blog/{slug}/index.html'
         if mode == 'template':
-            f = get(f'slug={slug}&fragment=1')
-            page = from_template(f)
+            f = get(f'slug={slug}&fragment=1'); page = from_template(f)
         else:
             page = get(f'slug={slug}', raw=True)
         old = open(out, encoding='utf-8').read() if os.path.exists(out) else None
         if old != page:
             os.makedirs(os.path.dirname(out), exist_ok=True)
-            open(out, 'w', encoding='utf-8').write(page)
-            new.append(slug)
-        if mode == 'template':
-            add_card(f, minutes(f['html']))
+            open(out, 'w', encoding='utf-8').write(page); changed.append(slug)
+        if mode == 'template': add_card(f, minutes(f['html']))
     if mode == 'shell':
-        idx = get('', raw=True)
-        os.makedirs('blog', exist_ok=True)
-        if not os.path.exists('blog/index.html') or open('blog/index.html', encoding='utf-8').read() != idx:
-            open('blog/index.html', 'w', encoding='utf-8').write(idx)
-    sm = get('sitemap=1', raw=True)
-    open('blog-sitemap.xml', 'w', encoding='utf-8').write(sm)
-    print(json.dumps({'svc': svc, 'articles': len(exp['articles']), 'changed': new}))
-    with open(os.environ.get('GITHUB_OUTPUT', os.devnull), 'a') as o:
-        o.write(f'changed={len(new)}\n')
+        open('blog/index.html', 'w', encoding='utf-8').write(get('', raw=True))
+    open('blog-sitemap.xml', 'w', encoding='utf-8').write(get('sitemap=1', raw=True))
+    os.unlink(_ALL)
+    site = 'https://www.asendify.co' if svc == 'agency' else 'https://realty.asendify.co'
+    print(json.dumps({'svc': svc, 'total': len(rows), 'changed': changed, 'indexnow_urls': [f'{site}/blog/{s}/' for s in changed] + ([f'{site}/blog/'] if changed else [])}))
 
 main()
