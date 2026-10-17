@@ -31,15 +31,28 @@
       rot: Math.random() * Math.PI * 2,
       vr: (Math.random() - 0.5) * 0.03,
       a: 0.45 + Math.random() * 0.4,       // opacity
-      hue: Math.random() < 0.7 ? '255,183,208' : '255,214,228'
+      light: Math.random() < 0.3   // 30% of petals are the paler shade
     };
+  }
+  // 2026-10-17 (Manthan): petals start pink and turn blue as you scroll down the page.
+  var MAIN = [[255,183,208],[120,170,255]], PALE = [[255,214,228],[190,215,255]], CORE = [[255,120,160],[40,110,240]];
+  var mix = 0;
+  function col(pair) {
+    var a = pair[0], b = pair[1];
+    return 'rgb(' + Math.round(a[0] + (b[0] - a[0]) * mix) + ',' + Math.round(a[1] + (b[1] - a[1]) * mix) + ',' + Math.round(a[2] + (b[2] - a[2]) * mix) + ')';
+  }
+  function scrollMix() {
+    var max = document.documentElement.scrollHeight - window.innerHeight;
+    var r = max > 0 ? (window.scrollY || document.documentElement.scrollTop) / max : 0;
+    r = Math.min(Math.max((r - 0.03) / 0.6, 0), 1);   // pink at the top, fully blue by ~60% down
+    return r * r * (3 - 2 * r);                        // smooth ease
   }
   function petal(p) {
     ctx.save();
     ctx.translate(p.x, p.y);
     ctx.rotate(p.rot);
     ctx.globalAlpha = p.a;
-    ctx.fillStyle = 'rgb(' + p.hue + ')';
+    ctx.fillStyle = col(p.light ? PALE : MAIN);
     var s = p.s;
     ctx.beginPath();
     // cherry-blossom petal: rounded with a small notch at the tip
@@ -48,7 +61,7 @@
     ctx.bezierCurveTo(-s * 0.9, s * 0.4, -s * 0.9, -s, 0, -s);
     ctx.fill();
     ctx.globalAlpha = p.a * 0.55;
-    ctx.fillStyle = 'rgb(255,120,160)';
+    ctx.fillStyle = col(CORE);
     ctx.beginPath();
     ctx.ellipse(0, s * 0.35, s * 0.25, s * 0.45, 0, 0, Math.PI * 2);
     ctx.fill();
@@ -61,6 +74,7 @@
     var dt = Math.min((now - last) / 16.7, 3); last = now;
     t += 0.004 * dt;
     wind = Math.sin(t) * 0.35 + Math.sin(t * 2.7) * 0.15;
+    var target = scrollMix(); mix += (target - mix) * 0.08 * dt;   // glide towards the scroll colour
     ctx.clearRect(0, 0, W, H);
     for (var i = 0; i < petals.length; i++) {
       var p = petals[i];
