@@ -12,3 +12,4 @@ User-agent: Google-Extended
 Allow: /
 
 Sitemap: https://realty.asendify.co/sitemap.xml
+Sitemap: https://realty.asendify.co/blog-sitemap.xml
