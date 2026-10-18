@@ -1,4 +1,4 @@
-/* Asendify — pink blossom overlay. Lightweight canvas, pointer-events none.
+/* Asendify — blossom overlay (pink -> blue -> red as you scroll). Lightweight canvas, pointer-events none.
    Skips on reduced-motion, pauses when the tab is hidden, fewer petals on phones. */
 (function () {
   if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
@@ -34,18 +34,20 @@
       light: Math.random() < 0.3   // 30% of petals are the paler shade
     };
   }
-  // 2026-10-17 (Manthan): petals start pink and turn blue as you scroll down the page.
-  var MAIN = [[255,183,208],[120,170,255]], PALE = [[255,214,228],[190,215,255]], CORE = [[255,120,160],[40,110,240]];
+  // 2026-10-18 (Manthan): petals are pink at the top, turn blue as you scroll, then red near the bottom.
+  // Colour stops: [pink, blue, red]; mix runs 0 (pink) -> 1 (blue) -> 2 (red).
+  var MAIN = [[255,183,208],[120,170,255],[255,92,92]], PALE = [[255,214,228],[190,215,255],[255,190,190]], CORE = [[255,120,160],[40,110,240],[205,25,40]];
   var mix = 0;
-  function col(pair) {
-    var a = pair[0], b = pair[1];
-    return 'rgb(' + Math.round(a[0] + (b[0] - a[0]) * mix) + ',' + Math.round(a[1] + (b[1] - a[1]) * mix) + ',' + Math.round(a[2] + (b[2] - a[2]) * mix) + ')';
+  function col(stops) {
+    var i = mix < 1 ? 0 : 1, f = mix < 1 ? mix : mix - 1, a = stops[i], b = stops[i + 1];
+    return 'rgb(' + Math.round(a[0] + (b[0] - a[0]) * f) + ',' + Math.round(a[1] + (b[1] - a[1]) * f) + ',' + Math.round(a[2] + (b[2] - a[2]) * f) + ')';
   }
+  function ease(r) { r = Math.min(Math.max(r, 0), 1); return r * r * (3 - 2 * r); }
   function scrollMix() {
     var max = document.documentElement.scrollHeight - window.innerHeight;
     var r = max > 0 ? (window.scrollY || document.documentElement.scrollTop) / max : 0;
-    r = Math.min(Math.max((r - 0.03) / 0.6, 0), 1);   // pink at the top, fully blue by ~60% down
-    return r * r * (3 - 2 * r);                        // smooth ease
+    // pink at the top, fully blue by ~45% down, fully red by ~90% down
+    return ease((r - 0.03) / 0.42) + ease((r - 0.5) / 0.4);
   }
   function petal(p) {
     ctx.save();
