@@ -1,5 +1,6 @@
 /* Asendify — blossom overlay (pink -> blue -> red as you scroll). Lightweight canvas, pointer-events none.
-   Skips on reduced-motion, pauses when the tab is hidden, fewer petals on phones. */
+   Skips on reduced-motion, pauses when the tab is hidden, fewer petals on phones.
+   2026-10-19 (Manthan): petals stay on screen for 3 seconds, then fade away and stop, so the page stays easy to read. */
 (function () {
   if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
   var c = document.createElement('canvas');
@@ -92,7 +93,14 @@
   window.addEventListener('resize', resize, { passive: true });
   document.addEventListener('visibilitychange', function () {
     if (document.hidden) { running = false; }
-    else if (!running) { running = true; last = performance.now(); requestAnimationFrame(frame); }
+    else if (!running && c.isConnected) { running = true; last = performance.now(); requestAnimationFrame(frame); }
   });
   requestAnimationFrame(function (n) { last = n; frame(n); });
+  // Show for 3 s, fade out over 1.2 s, then stop drawing and remove the canvas.
+  var SHOW_MS = 3000, FADE_MS = 1200;
+  c.style.transition = 'opacity ' + FADE_MS + 'ms ease';
+  setTimeout(function () {
+    c.style.opacity = '0';
+    setTimeout(function () { running = false; try { c.remove(); } catch (e) {} }, FADE_MS + 50);
+  }, SHOW_MS);
 })();
