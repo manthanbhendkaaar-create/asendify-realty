@@ -3,6 +3,7 @@
    2026-10-19 (Manthan): petals stay on screen for 3 seconds, then fade away and stop, so the page stays easy to read. */
 (function () {
   if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  if (document.getElementById('blossom')) return; // 2026-10-19: never run twice on one page
   var c = document.createElement('canvas');
   c.id = 'blossom';
   c.setAttribute('aria-hidden', 'true');
