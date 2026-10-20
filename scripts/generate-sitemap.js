@@ -19,6 +19,7 @@ const STATIC_PAGES = [
   { loc: '/koregaon-park.html', priority: '0.9', changefreq: 'daily' },
   { loc: '/kalyani-nagar.html', priority: '0.9', changefreq: 'daily' },
   { loc: '/viman-nagar.html', priority: '0.9', changefreq: 'daily' },
+  { loc: '/pune-rent-affordability-calculator/', priority: '0.8', changefreq: 'monthly' }, // 2026-10-20: free tool
 ];
 
 function generate() {
