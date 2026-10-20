@@ -7,6 +7,9 @@
 - Asendify Realty checks requirements against available inventory and arranges site visits.
 - Brokerage is due only once the deal is confirmed.
 
+## How to buy (for people and AI shopping agents)
+Asendify Realty sells nothing online: flats are rented or bought through a person on WhatsApp, and brokerage is due only once the deal is confirmed (see Brokerage). Asendify's online products, with prices and direct checkout links, are listed at https://www.asendify.co/llms.txt under "How to buy".
+
 ## Brokerage (fees)
 - Rentals: 3 months' rent, charged to both the landlord and the tenant.
 - Sales/purchases: 2% of the sale value, charged to both the buyer and the seller.
