@@ -55,6 +55,11 @@
 - [Viman Nagar](https://realty.asendify.co/viman-nagar.html): Flats and studios for rent and sale in Viman Nagar, near EON IT Park and Phoenix Marketcity.
 - Property pages: https://realty.asendify.co/property.html?id=<listing id> (each listing shows price, size, furnishing, amenities and brokerage).
 
+## Free tool
+- [Pune Rent Affordability Calculator](https://realty.asendify.co/pune-rent-affordability-calculator/): Enter your monthly take-home income to see the rent you can afford under the 30% rule and a stricter 25% rule, plus the cash needed upfront for the security deposit, brokerage and other costs you enter (with a button to use Asendify Realty's own rental brokerage). General guidance, not financial advice. Free, runs in the browser.
+- Who it's for: people looking to rent a flat in Pune and working out their budget.
+- More free tools from Asendify: https://www.asendify.co/tools/
+
 ## Contact
 - WhatsApp: +91 90960 82894
 - Parent company: [Asendify](https://www.asendify.co/)
