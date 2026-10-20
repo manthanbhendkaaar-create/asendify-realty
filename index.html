@@ -12,18 +12,389 @@
 <meta property="og:url" content="https://realty.asendify.co/">
 <meta name="twitter:card" content="summary">
 <link rel="stylesheet" href="assets/css/style.css?v=2">
+<style>.fl{columns:2 300px;column-gap:40px;padding-left:20px;margin:0}.fl li{break-inside:avoid;margin:0 0 10px;color:var(--stone);line-height:1.55}.fl li b{color:var(--ink)}.updated{margin-top:18px;color:var(--stone);font-size:13.5px}.faq{max-width:820px}.faq details{border-top:1px solid rgba(212,175,55,0.25);padding:16px 0}.faq summary{cursor:pointer;font-weight:600;font-size:17px}.faq details p{color:var(--stone);margin-top:10px;line-height:1.6}</style>
 <script type="application/ld+json">
 {
-  "@context": "https://schema.org",
-  "@type": "RealEstateAgent",
-  "name": "Asendify Realty",
-  "url": "https://realty.asendify.co/",
-  "areaServed": [
-    { "@type": "Place", "name": "Koregaon Park, Pune, Maharashtra" },
-    { "@type": "Place", "name": "Kalyani Nagar, Pune, Maharashtra" },
-    { "@type": "Place", "name": "Viman Nagar, Pune, Maharashtra" }
-  ],
-  "priceRange": "\u20b9\u20b9"
+ "@context": "https://schema.org",
+ "@graph": [
+  {
+   "@type": "RealEstateAgent",
+   "name": "Asendify Realty",
+   "url": "https://realty.asendify.co/",
+   "areaServed": [
+    {
+     "@type": "Place",
+     "name": "Koregaon Park, Pune, Maharashtra"
+    },
+    {
+     "@type": "Place",
+     "name": "Kalyani Nagar, Pune, Maharashtra"
+    },
+    {
+     "@type": "Place",
+     "name": "Viman Nagar, Pune, Maharashtra"
+    }
+   ],
+   "priceRange": "₹₹",
+   "@id": "https://realty.asendify.co/#agent",
+   "telephone": "+91 90960 82894",
+   "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Pune",
+    "addressRegion": "Maharashtra",
+    "addressCountry": "IN"
+   },
+   "parentOrganization": {
+    "@type": "Organization",
+    "name": "Asendify",
+    "url": "https://www.asendify.co/"
+   }
+  },
+  {
+   "@type": "Service",
+   "@id": "https://realty.asendify.co/#brokerage",
+   "name": "Rental and resale brokerage in Koregaon Park, Kalyani Nagar and Viman Nagar",
+   "serviceType": "Real estate brokerage",
+   "provider": {
+    "@id": "https://realty.asendify.co/#agent"
+   },
+   "areaServed": [
+    {
+     "@type": "Place",
+     "name": "Koregaon Park, Pune, Maharashtra"
+    },
+    {
+     "@type": "Place",
+     "name": "Kalyani Nagar, Pune, Maharashtra"
+    },
+    {
+     "@type": "Place",
+     "name": "Viman Nagar, Pune, Maharashtra"
+    }
+   ],
+   "offers": [
+    {
+     "@type": "Offer",
+     "name": "Rental brokerage",
+     "description": "3 months' rent, charged to both the landlord and the tenant, plus a 45% service fee. Due only once the deal is confirmed."
+    },
+    {
+     "@type": "Offer",
+     "name": "Sale brokerage",
+     "description": "2% of the sale value, charged to both the buyer and the seller, plus a 45% service fee. Due only once the deal is confirmed."
+    }
+   ],
+   "hasOfferCatalog": {
+    "@type": "OfferCatalog",
+    "name": "Everything included",
+    "itemListElement": [
+     {
+      "@type": "Offer",
+      "itemOffered": {
+       "@type": "Service",
+       "name": "Three localities only",
+       "description": "Koregaon Park, Kalyani Nagar and Viman Nagar in Pune, nowhere else"
+      }
+     },
+     {
+      "@type": "Offer",
+      "itemOffered": {
+       "@type": "Service",
+       "name": "Flats for rent",
+       "description": "rental listings in all three localities"
+      }
+     },
+     {
+      "@type": "Offer",
+      "itemOffered": {
+       "@type": "Service",
+       "name": "Flats for sale",
+       "description": "resale listings in all three localities"
+      }
+     },
+     {
+      "@type": "Offer",
+      "itemOffered": {
+       "@type": "Service",
+       "name": "Listings verified in person",
+       "description": "we stay in three localities so every listing can be checked in person"
+      }
+     },
+     {
+      "@type": "Offer",
+      "itemOffered": {
+       "@type": "Service",
+       "name": "Only available flats",
+       "description": "flats that are no longer available are hidden from the listings"
+      }
+     },
+     {
+      "@type": "Offer",
+      "itemOffered": {
+       "@type": "Service",
+       "name": "Featured listings",
+       "description": "a running set of what's live right now, on the home page"
+      }
+     },
+     {
+      "@type": "Offer",
+      "itemOffered": {
+       "@type": "Service",
+       "name": "All listings page",
+       "description": "the full inventory in one place"
+      }
+     },
+     {
+      "@type": "Offer",
+      "itemOffered": {
+       "@type": "Service",
+       "name": "Rent or buy filter",
+       "description": "show only rentals or only flats for sale"
+      }
+     },
+     {
+      "@type": "Offer",
+      "itemOffered": {
+       "@type": "Service",
+       "name": "BHK filter",
+       "description": "filter by number of bedrooms"
+      }
+     },
+     {
+      "@type": "Offer",
+      "itemOffered": {
+       "@type": "Service",
+       "name": "Locality filter",
+       "description": "filter by Koregaon Park, Kalyani Nagar or Viman Nagar"
+      }
+     },
+     {
+      "@type": "Offer",
+      "itemOffered": {
+       "@type": "Service",
+       "name": "Sort",
+       "description": "by price, low to high or high to low, or newest first"
+      }
+     },
+     {
+      "@type": "Offer",
+      "itemOffered": {
+       "@type": "Service",
+       "name": "Locality pages",
+       "description": "a page each for Koregaon Park, Kalyani Nagar and Viman Nagar"
+      }
+     },
+     {
+      "@type": "Offer",
+      "itemOffered": {
+       "@type": "Service",
+       "name": "Property pages",
+       "description": "every flat has its own page with a description"
+      }
+     },
+     {
+      "@type": "Offer",
+      "itemOffered": {
+       "@type": "Service",
+       "name": "Photo gallery",
+       "description": "tap a thumbnail to see each photo large"
+      }
+     },
+     {
+      "@type": "Offer",
+      "itemOffered": {
+       "@type": "Service",
+       "name": "Spec table",
+       "description": "BHK, bathrooms, area in sqft and furnishing for every flat"
+      }
+     },
+     {
+      "@type": "Offer",
+      "itemOffered": {
+       "@type": "Service",
+       "name": "Amenities",
+       "description": "listed for each flat, such as parking, lift, security and power backup"
+      }
+     },
+     {
+      "@type": "Offer",
+      "itemOffered": {
+       "@type": "Service",
+       "name": "Price on every listing",
+       "description": "monthly rent or the total sale price, in rupees"
+      }
+     },
+     {
+      "@type": "Offer",
+      "itemOffered": {
+       "@type": "Service",
+       "name": "Brokerage on every listing",
+       "description": "the brokerage for that flat, shown before you enquire"
+      }
+     },
+     {
+      "@type": "Offer",
+      "itemOffered": {
+       "@type": "Service",
+       "name": "WhatsApp from any listing",
+       "description": "one tap opens WhatsApp with a message that names the flat for you"
+      }
+     },
+     {
+      "@type": "Offer",
+      "itemOffered": {
+       "@type": "Service",
+       "name": "WhatsApp button on every page",
+       "description": "for general enquiries about any of the three localities"
+      }
+     },
+     {
+      "@type": "Offer",
+      "itemOffered": {
+       "@type": "Service",
+       "name": "Tell us what you need",
+       "description": "share your budget, locality and timeline"
+      }
+     },
+     {
+      "@type": "Offer",
+      "itemOffered": {
+       "@type": "Service",
+       "name": "Shortlisting",
+       "description": "we match you against live inventory"
+      }
+     },
+     {
+      "@type": "Offer",
+      "itemOffered": {
+       "@type": "Service",
+       "name": "Site visits",
+       "description": "arranged for anything that fits"
+      }
+     },
+     {
+      "@type": "Offer",
+      "itemOffered": {
+       "@type": "Service",
+       "name": "Help for owners",
+       "description": "landlords and sellers in the three localities can find a tenant or buyer through us"
+      }
+     },
+     {
+      "@type": "Offer",
+      "itemOffered": {
+       "@type": "Service",
+       "name": "Brokerage only on a confirmed deal",
+       "description": "you pay brokerage only when the keys change hands"
+      }
+     }
+    ]
+   }
+  },
+  {
+   "@type": "WebPage",
+   "@id": "https://realty.asendify.co/#webpage",
+   "url": "https://realty.asendify.co/",
+   "name": "Flats for Rent & Sale in Koregaon Park, Kalyani Nagar & Viman Nagar, Pune | Asendify Realty",
+   "about": {
+    "@id": "https://realty.asendify.co/#brokerage"
+   },
+   "dateModified": "2026-10-20"
+  },
+  {
+   "@type": "FAQPage",
+   "mainEntity": [
+    {
+     "@type": "Question",
+     "name": "Which areas do you cover?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Koregaon Park, Kalyani Nagar and Viman Nagar in Pune, and nowhere else. Staying in three localities means every listing gets verified in person."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "How much is the brokerage on a rental?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "3 months' rent, charged to both the landlord and the tenant. A 45% service fee is added on top."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "How much is the brokerage on a sale?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "2% of the sale value, charged to both the buyer and the seller. A 45% service fee is added on top."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "When do I pay brokerage?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Only once the deal is confirmed: you pay brokerage only when the keys change hands."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "What is the 45% service fee?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "A 45% service fee is added on top of every fee paid to Asendify Realty, including brokerage."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "How do I enquire about a flat?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Tap \"Message us on WhatsApp\" on any listing and the message names the flat for you, or use the WhatsApp button on any page. Our WhatsApp number is +91 90960 82894."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Are the listings verified?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Yes. We don't spread thin across all of Pune: we work in three localities only, so every listing gets verified in person."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Do you arrange site visits?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Yes. Tell us your budget, locality and timeline, and we match you against live inventory and arrange site visits for anything that fits."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Can I find a tenant or buyer for my flat through you?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Yes, if the flat is in Koregaon Park, Kalyani Nagar or Viman Nagar. Message us on WhatsApp. Brokerage is 3 months' rent for a rental or 2% of the sale value for a sale, plus the 45% service fee, due once the deal is confirmed."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Can I filter the listings?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Yes. On the listings page you can filter by rent or buy, BHK and locality, and sort by price or newest."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Is there a free rent calculator?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Yes. The free Pune Rent Affordability Calculator at realty.asendify.co/pune-rent-affordability-calculator/ helps you work out what rent fits your budget before you start looking."
+     }
+    }
+   ]
+  }
+ ]
 }
 </script>
 </head>
@@ -141,6 +512,99 @@
   </div>
 </section>
 
+<hr class="divider">
+
+<section id="included">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">What you get</span>
+      <h2>Everything included, by name</h2>
+      <p>Everything Asendify Realty does for tenants, buyers, landlords and sellers, in plain words.</p>
+    </div>
+    <ul class="fl">
+      <li><b>Three localities only</b>: Koregaon Park, Kalyani Nagar and Viman Nagar in Pune, nowhere else</li>
+      <li><b>Flats for rent</b>: rental listings in all three localities</li>
+      <li><b>Flats for sale</b>: resale listings in all three localities</li>
+      <li><b>Listings verified in person</b>: we stay in three localities so every listing can be checked in person</li>
+      <li><b>Only available flats</b>: flats that are no longer available are hidden from the listings</li>
+      <li><b>Featured listings</b>: a running set of what's live right now, on the home page</li>
+      <li><b>All listings page</b>: the full inventory in one place</li>
+      <li><b>Rent or buy filter</b>: show only rentals or only flats for sale</li>
+      <li><b>BHK filter</b>: filter by number of bedrooms</li>
+      <li><b>Locality filter</b>: filter by Koregaon Park, Kalyani Nagar or Viman Nagar</li>
+      <li><b>Sort</b>: by price, low to high or high to low, or newest first</li>
+      <li><b>Locality pages</b>: a page each for Koregaon Park, Kalyani Nagar and Viman Nagar</li>
+      <li><b>Property pages</b>: every flat has its own page with a description</li>
+      <li><b>Photo gallery</b>: tap a thumbnail to see each photo large</li>
+      <li><b>Spec table</b>: BHK, bathrooms, area in sqft and furnishing for every flat</li>
+      <li><b>Amenities</b>: listed for each flat, such as parking, lift, security and power backup</li>
+      <li><b>Price on every listing</b>: monthly rent or the total sale price, in rupees</li>
+      <li><b>Brokerage on every listing</b>: the brokerage for that flat, shown before you enquire</li>
+      <li><b>WhatsApp from any listing</b>: one tap opens WhatsApp with a message that names the flat for you</li>
+      <li><b>WhatsApp button on every page</b>: for general enquiries about any of the three localities</li>
+      <li><b>Tell us what you need</b>: share your budget, locality and timeline</li>
+      <li><b>Shortlisting</b>: we match you against live inventory</li>
+      <li><b>Site visits</b>: arranged for anything that fits</li>
+      <li><b>Help for owners</b>: landlords and sellers in the three localities can find a tenant or buyer through us</li>
+      <li><b>Brokerage only on a confirmed deal</b>: you pay brokerage only when the keys change hands</li>
+    </ul>
+    <p class="updated">Last updated: <time datetime="2026-10-20">20 October 2026</time></p>
+  </div>
+</section>
+
+<hr class="divider">
+
+<section id="who">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">Is it for you?</span>
+      <h2>Who it's for, and who it's not for</h2>
+    </div>
+    <div class="steps">
+      <div class="step"><span class="num mono">For</span><h3>Tenants and buyers</h3><p>Anyone looking to rent or buy a flat in Koregaon Park, Kalyani Nagar or Viman Nagar who wants verified listings and help with site visits.</p></div>
+      <div class="step"><span class="num mono">For</span><h3>Landlords and sellers</h3><p>Owners of flats in these three localities who want a tenant or buyer found for them.</p></div>
+      <div class="step"><span class="num mono">Not for</span><h3>Anywhere else, or no brokerage</h3><p>Properties outside these three localities, and anyone looking for a deal without brokerage: brokerage applies to both sides once a deal is confirmed.</p></div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<section id="free-tool">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">Free tool</span>
+      <h2>Pune Rent Affordability Calculator</h2>
+      <p>Work out what rent fits your budget before you start looking. Free, no sign-up.</p>
+    </div>
+    <a class="btn btn-primary" href="https://realty.asendify.co/pune-rent-affordability-calculator/">Open the free calculator</a>
+  </div>
+</section>
+
+<hr class="divider">
+
+<section id="faq">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">Questions</span>
+      <h2>Frequently asked questions</h2>
+    </div>
+    <div class="faq">
+      <details><summary>Which areas do you cover?</summary><p>Koregaon Park, Kalyani Nagar and Viman Nagar in Pune, and nowhere else. Staying in three localities means every listing gets verified in person.</p></details>
+      <details><summary>How much is the brokerage on a rental?</summary><p>3 months' rent, charged to both the landlord and the tenant. A 45% service fee is added on top.</p></details>
+      <details><summary>How much is the brokerage on a sale?</summary><p>2% of the sale value, charged to both the buyer and the seller. A 45% service fee is added on top.</p></details>
+      <details><summary>When do I pay brokerage?</summary><p>Only once the deal is confirmed: you pay brokerage only when the keys change hands.</p></details>
+      <details><summary>What is the 45% service fee?</summary><p>A 45% service fee is added on top of every fee paid to Asendify Realty, including brokerage.</p></details>
+      <details><summary>How do I enquire about a flat?</summary><p>Tap "Message us on WhatsApp" on any listing and the message names the flat for you, or use the WhatsApp button on any page. Our WhatsApp number is +91 90960 82894.</p></details>
+      <details><summary>Are the listings verified?</summary><p>Yes. We don't spread thin across all of Pune: we work in three localities only, so every listing gets verified in person.</p></details>
+      <details><summary>Do you arrange site visits?</summary><p>Yes. Tell us your budget, locality and timeline, and we match you against live inventory and arrange site visits for anything that fits.</p></details>
+      <details><summary>Can I find a tenant or buyer for my flat through you?</summary><p>Yes, if the flat is in Koregaon Park, Kalyani Nagar or Viman Nagar. Message us on WhatsApp. Brokerage is 3 months' rent for a rental or 2% of the sale value for a sale, plus the 45% service fee, due once the deal is confirmed.</p></details>
+      <details><summary>Can I filter the listings?</summary><p>Yes. On the listings page you can filter by rent or buy, BHK and locality, and sort by price or newest.</p></details>
+      <details><summary>Is there a free rent calculator?</summary><p>Yes. The free Pune Rent Affordability Calculator at realty.asendify.co/pune-rent-affordability-calculator/ helps you work out what rent fits your budget before you start looking.</p></details>
+    </div>
+  </div>
+</section>
+
 <footer>
   <div class="wrap">
     <div>
@@ -151,6 +615,7 @@
       <p style="color:var(--paper);font-weight:600;margin-bottom:8px;">Browse</p>
       <p><a href="listings.html?type=rent">Properties for rent</a></p>
       <p><a href="listings.html?type=buy">Properties for sale</a></p>
+      <p><a href="https://realty.asendify.co/pune-rent-affordability-calculator/">Free rent affordability calculator</a></p>
     </div>
   </div>
   <div class="wrap fine">&copy; 2026 Asendify Realty. Pune, Maharashtra.</div>
@@ -159,5 +624,20 @@
 <script src="assets/js/main.js"></script>
 <script src="/assets/js/blossom.js?v=5" defer></script>
 <script src="/asd-booksbar.js" data-src="realty" defer></script>
+<script>/* 2026-10-20: real-visit counter for the Asendify Channels dashboard (same rules as the book shops and the other sites). */
+(function(){try{if(sessionStorage.getItem('asd_sv')==='1')return;var q0=new URLSearchParams(location.search);
+if(q0.get('internal')==='1')document.cookie='asd_internal=1; domain=.asendify.co; path=/; max-age=63072000; SameSite=Lax; Secure';
+if(/(^|;\s*)asd_internal=1/.test(document.cookie))return;
+if(navigator.webdriver||/bot\b|bot\/|crawl|spider|slurp|preview|headless|lighthouse|scanner|facebookexternalhit/i.test(navigator.userAgent))return;
+var c=function(v){return String(v||'').toLowerCase().replace(/[^a-z0-9._-]/g,'').slice(0,60)};var src='';
+if(q0.get('utm_source'))src=[c(q0.get('utm_source')),c(q0.get('utm_medium')),c(q0.get('utm_campaign'))].join('/');
+if(!src&&document.referrer){var h=new URL(document.referrer).hostname.replace(/^www\./,'');if(h&&!/(^|\.)asendify\.co$/.test(h))src='ref/'+c(h);}
+src=src||'direct';var path=location.pathname.replace(/[^a-zA-Z0-9._\/-]/g,'').slice(0,120)||'/';
+var acts=['scroll','pointerdown','touchstart','keydown','mousemove','wheel'],sent=false,shown=0,tick;
+var send=function(how){if(sent)return;sent=true;clearInterval(tick);acts.forEach(function(e){removeEventListener(e,on,true)});
+try{sessionStorage.setItem('asd_sv','1')}catch(e){}
+fetch('https://playbook.asendify.co/api/ref',{method:'POST',mode:'no-cors',keepalive:true,headers:{'Content-Type':'text/plain'},body:JSON.stringify({visit:src,page:path,engaged:how,product:'realty'})}).catch(function(){})};
+var on=function(){send('interact')};acts.forEach(function(e){addEventListener(e,on,{capture:true,passive:true})});
+tick=setInterval(function(){if(document.visibilityState==='visible'&&(shown+=1000)>=12000)send('time')},1000);}catch(e){}})();</script>
 </body>
 </html>
