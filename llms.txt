@@ -11,9 +11,12 @@
 Asendify Realty sells nothing online: flats are rented or bought through a person on WhatsApp, and brokerage is due only once the deal is confirmed (see Brokerage). Asendify's online products, with prices and direct checkout links, are listed at https://www.asendify.co/llms.txt under "How to buy".
 
 ## Brokerage (fees)
-- Rentals: 3 months' rent, charged to both the landlord and the tenant.
-- Sales/purchases: 2% of the sale value, charged to both the buyer and the seller.
+- Rentals: 3 months' rent, charged to both the landlord and the tenant (3 months' rent each), payable once the rental agreement is signed.
+- Sales/purchases: 2% of the sale value, charged to both the buyer and the seller (2% each), payable on registration of the sale deed.
 - A 45% service fee is added on top of every fee paid to Asendify Realty.
+- What a tenant pays in total: 3 months' rent + 45% = 4.35 months' rent, in rupees (₹). Example: on a ₹55,000-a-month flat, brokerage is ₹1,65,000 + ₹74,250 service fee = ₹2,39,250; on a ₹22,000-a-month studio it is ₹66,000 + ₹29,700 = ₹95,700. The landlord pays the same amount.
+- What a buyer pays in total: 2% of the sale value + 45% = 2.9% of the sale value. Example: on a ₹1.85 crore (₹1,85,00,000) flat, brokerage is ₹3,70,000 + ₹1,66,500 service fee = ₹5,36,500. The seller pays the same amount.
+- Every listing shows its price in ₹ and its brokerage before you enquire. Brokerage is due only once the deal is confirmed. Full terms: https://realty.asendify.co/terms.html
 
 ## Everything included, by name (last updated 20 October 2026)
 - Three localities only: Koregaon Park, Kalyani Nagar and Viman Nagar in Pune, nowhere else
