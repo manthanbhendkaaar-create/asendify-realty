@@ -15,6 +15,11 @@ SHOP = os.environ.get('SHOP_DIR', os.path.join(os.path.dirname(os.path.abspath(_
 TEMPLATE = 'blog/how-to-get-more-watch-time-on-youtube/index.html'
 MANIFEST = 'blog/_articles.json'
 _ALL = None
+COUNTER = 'scripts/visit_counter.html'  # 2026-10-22: real-visit counter snippet (shell mode); template mode pages already load it
+
+def add_counter(page):
+    if not os.path.exists(COUNTER) or 'api/ref' in page: return page
+    return page.replace('</body>', open(COUNTER, encoding='utf-8').read().rstrip() + '\n</body>', 1)
 
 def get(qs, raw=False):
     r = subprocess.run(['node', os.path.join(SHOP, 'scripts', 'render_static.mjs'), _ALL, f'svc={svc}&{qs}'], capture_output=True, text=True, timeout=120)
@@ -88,14 +93,14 @@ def main():
         if mode == 'template':
             f = get(f'slug={slug}&fragment=1'); page = from_template(f)
         else:
-            page = get(f'slug={slug}', raw=True)
+            page = add_counter(get(f'slug={slug}', raw=True))
         old = open(out, encoding='utf-8').read() if os.path.exists(out) else None
         if old != page:
             os.makedirs(os.path.dirname(out), exist_ok=True)
             open(out, 'w', encoding='utf-8').write(page); changed.append(slug)
         if mode == 'template': add_card(f, minutes(f['html']))
     if mode == 'shell':
-        open('blog/index.html', 'w', encoding='utf-8').write(get('', raw=True))
+        open('blog/index.html', 'w', encoding='utf-8').write(add_counter(get('', raw=True)))
     open('blog-sitemap.xml', 'w', encoding='utf-8').write(get('sitemap=1', raw=True))
     os.unlink(_ALL)
     site = 'https://www.asendify.co' if svc == 'agency' else 'https://realty.asendify.co'
