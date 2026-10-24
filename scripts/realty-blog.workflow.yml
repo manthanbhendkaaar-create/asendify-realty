@@ -1,0 +1,45 @@
+name: Realty blog (realty.asendify.co)
+# 2026-10-24 (Manthan "yes all" to digest Y3): publishes the night agent's realty articles that live in Supabase
+# shop_articles with product='realty' as static pages at realty.asendify.co/blog/<slug>/ (they 404ed before).
+# Runs after the night agent (21:37 IST), 5 minutes after the www.asendify.co Hub articles run, and once more in the morning.
+# Copy of .github/workflows/realty-blog.yml (the push token can't write workflow files, so that one is added on github.com).
+on:
+  schedule:
+    - cron: '55 18 * * *'   # 00:25 IST
+    - cron: '40 1 * * *'    # 07:10 IST catch-up
+  workflow_dispatch:
+permissions:
+  contents: write
+  pages: write
+concurrency:
+  group: realty-blog
+  cancel-in-progress: false
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+      - id: build
+        run: bash scripts/realty_blog_ci.sh
+      - name: Ask GitHub Pages to rebuild
+        if: steps.build.outputs.changed == '1'
+        continue-on-error: true
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          curl -fsS -X POST -H "Authorization: Bearer $GH_TOKEN" -H "Accept: application/vnd.github+json" "https://api.github.com/repos/${{ github.repository }}/pages/builds"
+      - name: IndexNow (Bing, so ChatGPT search and Copilot) and live check
+        if: steps.build.outputs.changed == '1'
+        continue-on-error: true
+        run: |
+          sleep 150
+          URLS=$(python3 -c "import json; print(json.dumps(json.load(open('/tmp/realty_out.json'))['indexnow_urls']))")
+          KEY=0733d6c4fb47f0c1278d3ae0a066e1d3
+          curl -s -o /dev/null -w "IndexNow %{http_code}\n" -X POST https://api.indexnow.org/indexnow \
+            -H 'Content-Type: application/json; charset=utf-8' \
+            -d "{\"host\":\"realty.asendify.co\",\"key\":\"$KEY\",\"keyLocation\":\"https://realty.asendify.co/$KEY.txt\",\"urlList\":$URLS}"
+          for u in $(python3 -c "import json; print(' '.join(json.load(open('/tmp/realty_out.json'))['indexnow_urls'][:5]))"); do
+            curl -s -o /dev/null -w "%{http_code} $u\n" "$u"; done

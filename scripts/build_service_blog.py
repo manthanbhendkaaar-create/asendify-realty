@@ -11,6 +11,8 @@ and IndexNow for the new URLs.
 import json, re, sys, os, html, subprocess, datetime, tempfile
 
 svc, mode, rows_file = sys.argv[1], sys.argv[2], sys.argv[3]
+if svc == 'realty':  # 2026-10-24: realty.asendify.co/blog is built by scripts/build_realty_blog.py (nightly workflow)
+    raise SystemExit('realty: use scripts/build_realty_blog.py (Realty blog workflow), not this script')
 SHOP = os.environ.get('SHOP_DIR', os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', '..', 'asendify-shop'))
 TEMPLATE = 'blog/how-to-get-more-watch-time-on-youtube/index.html'
 MANIFEST = 'blog/_articles.json'

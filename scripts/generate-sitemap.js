@@ -42,10 +42,17 @@ function generate() {
     <priority>0.7</priority>
   </url>`).join('\n');
 
+  // 2026-10-24: keep the blog URLs that scripts/build_realty_blog.py adds (nightly Realty blog workflow).
+  let blogEntries = '';
+  try {
+    const old = fs.readFileSync(SITEMAP_PATH, 'utf8');
+    blogEntries = (old.match(/[ \t]*<url>\s*<loc>https:\/\/realty\.asendify\.co\/blog\/[\s\S]*?<\/url>/g) || []).join('\n');
+  } catch (e) { /* no old sitemap */ }
+
   const xml = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 ${staticEntries}
-${propertyEntries}
+${propertyEntries}${blogEntries ? '\n' + blogEntries : ''}
 </urlset>
 `;
 
