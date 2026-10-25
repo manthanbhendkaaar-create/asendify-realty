@@ -180,7 +180,7 @@ def head(title, desc, url, kind, ld):
             '<meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">\n'
             f'<meta name="twitter:card" content="summary_large_image">\n<meta name="twitter:title" content="{t}">\n'
             f'<meta name="twitter:description" content="{d}">\n<meta name="twitter:image" content="{OG}">\n'
-            '<link rel="stylesheet" href="/assets/css/style.css?v=2">\n' + CSS + '\n'
+            '<link rel="stylesheet" href="/assets/css/style.css?v=3">\n' + CSS + '\n'
             '<script type="application/ld+json">' + json.dumps(ld, ensure_ascii=False).replace('</', '<\\/') + '</script>\n'
             '</head>\n<body>\n')
 
@@ -190,7 +190,7 @@ def header(camp):
             '    <nav class="nav-links">\n      <a href="/koregaon-park.html">Koregaon Park</a>\n'
             '      <a href="/kalyani-nagar.html">Kalyani Nagar</a>\n      <a href="/viman-nagar.html">Viman Nagar</a>\n'
             '      <a href="/listings.html">All Listings</a>\n      <a href="/blog/">Guides</a>\n'
-            '    <a class="asd-books-nav" href="https://www.asendify.co/books/?utm_source=realty&amp;utm_medium=nav">Books</a></nav>\n'
+            '    <a class="asd-books-nav btn-red-shine" href="https://www.asendify.co/books/?utm_source=realty&amp;utm_medium=nav">Books</a></nav>\n'
             f'    <a class="btn btn-primary" href="/listings.html?utm_source=blog&amp;utm_medium=header&amp;utm_campaign={esc(camp)}">Browse listings</a>\n'
             '  </div>\n</header>\n')
 
@@ -203,7 +203,7 @@ FOOTER = ('<footer>\n  <div class="wrap">\n    <div>\n      <a href="/" class="b
           '      <p><a href="/pune-rent-affordability-calculator/">Free rent affordability calculator</a></p>\n'
           '      <p><a href="/blog/">Pune renting guides</a></p>\n    </div>\n  </div>\n'
           '  <div class="wrap fine">&copy; 2026 Asendify Realty. Pune, Maharashtra. Guides are general information, not legal or financial advice.</div>\n'
-          '<div class="asd-books-line" style="text-align:center;padding:14px 16px 4px;font-size:14px"><a class="asd-books-foot" href="https://www.asendify.co/books/?utm_source=realty&amp;utm_medium=footer" style="color:#d4af37;text-decoration:none;font-weight:600">Asendify Books: practical playbooks &rarr;</a></div></footer>\n'
+          '<div class="asd-books-line" style="text-align:center;padding:14px 16px 4px;font-size:14px"><a class="asd-books-foot btn-red-shine" href="https://www.asendify.co/books/?utm_source=realty&amp;utm_medium=footer">Asendify Books: practical playbooks &rarr;</a></div></footer>\n'
           '<script src="/assets/js/blossom.js?v=5" defer></script>\n<script src="/asd-booksbar.js" data-src="realty" defer></script>\n')
 
 

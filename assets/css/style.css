@@ -253,3 +253,14 @@ footer .fine{ border-top:1px solid rgba(241,233,220,0.15); margin-top:32px; padd
 @media (prefers-reduced-motion: reduce){
   *{ transition:none !important; animation:none !important; }
 }
+
+/* 2026-10-25 (Manthan: "make the button of them shining red"): buttons on full/stopped services that send people
+   to the books and courses. Red gradient, white bold text, a moving shine (none with reduced motion). */
+.btn-red-shine{position:relative;overflow:hidden;color:#fff!important;background:#c40c0c!important;background:linear-gradient(135deg,#b30000 0%,#e01b1b 52%,#b30000 100%)!important;border-color:#8f0000!important;font-weight:700!important;text-decoration:none!important;text-shadow:0 1px 1px rgba(0,0,0,.3);box-shadow:0 12px 30px -10px rgba(224,27,27,.7),inset 0 1px 0 rgba(255,255,255,.28)!important}
+.btn-red-shine::after{content:""!important;position:absolute!important;top:0!important;bottom:auto!important;right:auto!important;left:-60%;width:40%!important;height:100%!important;background:linear-gradient(110deg,transparent,rgba(255,255,255,.34),transparent)!important;transform:skewX(-20deg)!important;transition:none!important;animation:redshine 3.8s ease-in-out infinite;pointer-events:none}
+.btn-red-shine:hover{filter:brightness(1.08) saturate(1.05);color:#fff!important}
+.btn-red-shine:focus-visible{outline:3px solid #fff;outline-offset:2px}
+@keyframes redshine{0%,62%{left:-60%}100%{left:130%}}
+@media (prefers-reduced-motion:reduce){.btn-red-shine::after{animation:none;display:none!important}}
+.asd-books-nav.btn-red-shine{padding:6px 14px;border-radius:999px}
+.asd-books-foot.btn-red-shine{display:inline-block;padding:8px 16px;border-radius:999px}
