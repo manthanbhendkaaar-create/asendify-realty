@@ -23,7 +23,7 @@
         css.textContent = '#asd-booksbar{background:#c40c0c!important;background:linear-gradient(90deg,#b30000 0%,#e01b1b 50%,#b30000 100%)!important;' +
           'color:#fff!important;text-shadow:0 1px 1px rgba(0,0,0,.35);box-shadow:0 1px 0 rgba(0,0,0,.3),0 6px 16px -8px rgba(179,0,0,.85),inset 0 1px 0 rgba(255,255,255,.22)}' +
           '#asd-booksbar::after{content:"";position:absolute;top:0;left:-60%;width:40%;height:100%;pointer-events:none;' +
-          'background:linear-gradient(110deg,transparent,rgba(255,255,255,.34),transparent);transform:skewX(-20deg);animation:asdbbshine 3.8s ease-in-out infinite}' +
+          'background:linear-gradient(110deg,transparent,rgba(255,255,255,.42),transparent);transform:skewX(-20deg);animation:asdbbshine 3.8s ease-in-out infinite}' +
           '@keyframes asdbbshine{0%,62%{left:-60%}100%{left:130%}}' +
           '#asd-booksbar:hover{filter:brightness(1.08)}#asd-booksbar:focus-visible{outline:2px solid #fff;outline-offset:-4px}' +
           '@media (prefers-reduced-motion:reduce){#asd-booksbar::after{animation:none;display:none}}';
