@@ -278,7 +278,9 @@ if(/(^|;\s*)asd_internal=1/.test(document.cookie))return;
 if(navigator.webdriver||/bot\b|bot\/|crawl|spider|slurp|preview|headless|lighthouse|scanner|facebookexternalhit/i.test(navigator.userAgent))return;
 var c=function(v){return String(v||'').toLowerCase().replace(/[^a-z0-9._-]/g,'').slice(0,60)};var src='';
 if(q0.get('utm_source'))src=[c(q0.get('utm_source')),c(q0.get('utm_medium')),c(q0.get('utm_campaign'))].join('/');
-if(!src&&document.referrer){var h=new URL(document.referrer).hostname.replace(/^www\./,'');if(h&&!/(^|\.)asendify\.co$/.test(h))src='ref/'+c(h);}
+var own='';if(!src&&document.referrer){var h=new URL(document.referrer).hostname.replace(/^www\./,'');if(h&&!/(^|\.)asendify\.co$/.test(h))src='ref/'+c(h);else if(h)own='site/'+(c(h.replace(/\.?asendify\.co$/,''))||'www');}
+/* 2026-10-28 (Manthan: tag every visit): first-touch source cookie (7 days, all asendify.co sites) so a visitor who came from Instagram and then opens a 2nd page/site keeps that source; own-site hops are site/<name>; the API labels in-app browsers. */
+var m0=document.cookie.match(/(^|;\s*)asd_src=([a-z0-9._\/-]{1,80})/);if(src)document.cookie='asd_src='+src+'; domain=.asendify.co; path=/; max-age=604800; SameSite=Lax; Secure';else if(m0)src=m0[2];else if(own)src=own;
 src=src||'direct';var path=location.pathname.replace(/[^a-zA-Z0-9._\/-]/g,'').slice(0,120)||'/';
 var acts=['scroll','pointerdown','touchstart','keydown','mousemove','wheel'],sent=false,shown=0,tick;
 var send=function(how){if(sent)return;sent=true;clearInterval(tick);acts.forEach(function(e){removeEventListener(e,on,true)});
